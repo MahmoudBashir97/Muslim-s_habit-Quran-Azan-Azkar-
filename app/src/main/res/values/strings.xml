@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">يوميات مسلم</string>
+
+    <string name="text_no_connectivity">No Connection</string>
+    <string name="text_connectivity">Back Online</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="alarm_name">منبه الصلاة</string>
+    <string name="alarm_work">(يعمل)</string>
+    <string name="alarm_not_work">(متوقف)</string>
+
+    <!-- settings -->
+    <string name="public_settings">الإعدادات العامة للأذان</string>
+    <string name="azan_voice">صوت المؤدن</string>
+    <string name="azan_voice_name">الشيخ عبد الباسط عبد الصمد</string>
+    <string name="alarm_way">طريقة التنبيه</string>
+    <string name="alarm_way_name">الاذان كامل</string>
+    <string name="azan_determination_way">طريقة الحساب</string>
+    <string name="select_country">اختيار الدولة</string>
+    <string name="select_city">اختيار المدينة</string>
+    <string name="save_btn">حفظ</string>
+</resources>

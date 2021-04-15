@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "300998262448",
+    "firebase_url": "https://cova-79f77.firebaseio.com",
+    "project_id": "cova-79f77",
+    "storage_bucket": "cova-79f77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300998262448:android:d7b258c4399d53f5af0575",
+        "android_client_info": {
+          "package_name": "com.mahmoudbashir.azan_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300998262448-t286s7bqa4786ia2s4ii82ce1c51bsoq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mahmoud.bashir.cova_app",
+            "certificate_hash": "f6f0330153c80be4f6a659c6430f64ce443e6d7a"
+          }
+        },
+        {
+          "client_id": "300998262448-62cvnnsj3sl5hqm2gmhijbemj8tqh760.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGgLAfJj4FzysSrAmRv0qDl4BfDJVRb5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300998262448-62cvnnsj3sl5hqm2gmhijbemj8tqh760.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

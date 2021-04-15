@@ -1,0 +1,8 @@
+
+g
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¹ºœ‰ùÿÿÿÿ8Å®¨ÙŒ/
+o	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( žžþüÿÿÿÿ8ÊÂŽßŒ/
+O
+java:S1128"3Remove this unused import 'android.content.Intent'.(³ð‹G8¨•±ßŒ/
+r	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( žžþüÿÿÿÿ8ÊÂŽßŒ/
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‹Êò8ŒõÀÙŒ/

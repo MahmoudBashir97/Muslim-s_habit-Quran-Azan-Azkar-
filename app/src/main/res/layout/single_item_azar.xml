@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/rel_back"
+    android:layout_margin="5dp"
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/frame2"
+        />
+
+    <TextView
+        android:id="@+id/txt_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="الرُّقية الشرعية من السنة النبوية"
+        android:textColor="#fff"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        />
+        <TextView
+            android:id="@+id/txt_zekr"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ  فِي الْعَالَمِينَ إِنَّكَ حَمِيدٌ مَجِيدٌ."
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/txt_reference"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="رواه البخاري"
+            android:textColor="#fff"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="90dp"
+            />
+
+</RelativeLayout>

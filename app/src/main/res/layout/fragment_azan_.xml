@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="isConnected"
+            type="Boolean" />
+        <import type="android.view.View"/>
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.Azan_Fragment"
+        android:background="@color/white">
+        <RelativeLayout
+            android:id="@+id/rel_fake"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+        <ImageView
+            android:id="@+id/ramadan_bar"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/ramadan_frame1"
+            android:scaleType="fitXY"/>
+
+        <RelativeLayout
+            android:id="@+id/rel_connection_err"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#F61919"
+            android:layout_marginTop="15dp"
+            android:visibility="@{isConnected? View.GONE : View.VISIBLE,default = gone}">
+
+            <TextView
+                android:id="@+id/txt_network_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Internet Connection , Please check it!!"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_current_pray"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/rel_back"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cardElevation="40dp"
+            android:padding="5dp"
+            android:layout_below="@+id/rel_fake">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rel_back"
+                android:elevation="50dp">
+
+                <ImageView
+                    android:layout_width="180dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/mosque_png"
+                    android:layout_alignParentBottom="true"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="15dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="الصلاة القادمة"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#FAFAFA" />
+
+                    <TextView
+                        android:id="@+id/txt_next_prayName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="العشاء"
+                        android:textSize="20sp"
+                        android:textStyle="normal"
+                        android:textColor="#FAFAFA"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp" />
+                    <TextView
+                        android:id="@+id/txt_next_prayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="19:34 pm"
+                        android:textSize="17sp"
+                        android:textStyle="normal"
+                        android:textColor="#FAFAFA"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_below="@+id/card_current_pray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cardMaxElevation="40dp"
+            android:elevation="40dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="مواقيت الصلاة اليوم"
+                    android:textColor="@color/text_colors"
+                    android:textStyle="normal"
+                    android:textSize="18sp"
+                    android:gravity="center|right"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="الفجر"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp"
+                        android:gravity="center|right"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:id="@+id/txt_fajr_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04:12"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#777777"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="10dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="الظهر"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp"
+                        android:gravity="center|right"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:id="@+id/txt_zohr_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04:12"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#777777"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="10dp" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="العصر"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp"
+                        android:gravity="center|right"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:id="@+id/txt_asr_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04:12"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#777777"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="10dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="المغرب"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp"
+                        android:gravity="center|right"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:id="@+id/txt_maghrib_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04:12"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#777777"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="10dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="العشاء"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp"
+                        android:gravity="center|right"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:id="@+id/txt_eshaa_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04:12"
+                        android:textColor="@color/text_colors"
+                        android:textStyle="normal"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:id="@+id/rel_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            >
+            <ImageView
+                android:id="@+id/settings_btn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_baseline_settings_24"
+                app:tint="@color/black"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="15dp"/>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/btn_switch_notify"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/settings_btn"/>
+
+            <TextView
+                android:id="@+id/txt_alarm_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alarm_work"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_toRightOf="@+id/btn_switch_notify"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alarm_name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
