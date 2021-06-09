@@ -10,7 +10,8 @@ import retrofit2.Response
 class AzanRepository(
     private val db:AzanTimesDatabase
 ) {
-    suspend fun getAzanTimes(city : String,timeformat:Int):Response<AzanTimes_Model> = RetrofitInstance.api.getAzanOfMonthTimes(city,timeformat)
+    suspend fun getAzanTimes(city : String,timeformat:Int,school:Int):Response<AzanTimes_Model> = RetrofitInstance.api.getAzanOfMonthTimes(city,timeformat,school)
+    suspend fun getAzanTimesByLocation(lat:String,lng:String,elev:Int,timeformat:Int,school:Int):Response<AzanTimes_Model> = RetrofitInstance.api.getAzanOfMonthTimesByLocation(lat,lng,elev,timeformat,school)
 
     suspend fun insert(results: results)=db.dao().insert(results)
 

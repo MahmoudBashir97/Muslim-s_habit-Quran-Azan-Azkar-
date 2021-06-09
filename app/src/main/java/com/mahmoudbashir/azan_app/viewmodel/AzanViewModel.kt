@@ -20,8 +20,12 @@ import retrofit2.Response
 class AzanViewModel(app:Application,private val repo:AzanRepository):AndroidViewModel(app) {
 
     val getAllData:LiveData<results> = repo.getAllDataTimes
-    suspend fun getAzanTimes(city:String,timeformat:Int):Response<AzanTimes_Model>{
-        return repo.getAzanTimes(city,timeformat)
+    suspend fun getAzanTimes(city:String,timeformat:Int,school:Int):Response<AzanTimes_Model>{
+        return repo.getAzanTimes(city,timeformat,school)
+    }
+
+    suspend fun getAzanTimes(lat:String,lng:String,elevation:Int,timeformat:Int,school:Int):Response<AzanTimes_Model>{
+        return repo.getAzanTimesByLocation(lat,lng,elevation,timeformat,school)
     }
 
     fun insert(result: results)=viewModelScope.launch {

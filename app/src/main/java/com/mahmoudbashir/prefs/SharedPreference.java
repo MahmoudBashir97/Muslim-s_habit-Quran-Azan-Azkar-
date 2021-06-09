@@ -29,13 +29,15 @@ public class SharedPreference {
         editor.apply();
     }
 
-    public void save_InfoData(String city, int times_way) {
+    public void save_InfoData(String city, int times_way,String lat,String lng) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //editor.clear();
         editor.putString("city", city);
         editor.putInt("times_school_Id", times_way);
+        editor.putString("lat", lat);
+        editor.putString("lng", lng);
         editor.putBoolean("userLogged", true);
         editor.apply();
     }
@@ -51,6 +53,15 @@ public class SharedPreference {
     public String getPath(){
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getString("path", "");
+    }
+
+    public String getLat(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("lat", "");
+    }
+    public String getLng(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("lng", "");
     }
 
     public boolean isLoggedIn() {

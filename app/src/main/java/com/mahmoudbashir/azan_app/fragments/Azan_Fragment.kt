@@ -94,9 +94,12 @@ class Azan_Fragment : Fragment() {
         })
     }
     private suspend fun getAndStore(city: String) {
+        val schoolId = SharedPreference.getInastance(context).timesSchoolId
+        val lat = SharedPreference.getInastance(context).lat
+        val lng = SharedPreference.getInastance(context).lng
         GlobalScope.launch(Dispatchers.IO) {
-            if (viewModel.getAzanTimes(city, 1).isSuccessful) {
-                viewModel.getAzanTimes(city, 1).body()?.let {
+            if (viewModel.getAzanTimes(lat,lng,333, 1,schoolId).isSuccessful) {
+                viewModel.getAzanTimes(lat,lng,333, 1,schoolId).body()?.let {
                     Log.d("timesAzan: ", "result: ${it.results.location.city}")
                     val result: results = it.results
                     viewModel.insert(result)

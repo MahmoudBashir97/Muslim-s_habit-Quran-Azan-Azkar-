@@ -325,12 +325,14 @@
                 android:layout_marginRight="15dp"/>
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/btn_switch_notify"
-                android:layout_width="50dp"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:layout_marginRight="15dp"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/settings_btn"/>
+                android:layout_toRightOf="@+id/settings_btn"
+                app:thumbTint="@color/rel_back"
+                />
 
             <TextView
                 android:id="@+id/txt_alarm_status"

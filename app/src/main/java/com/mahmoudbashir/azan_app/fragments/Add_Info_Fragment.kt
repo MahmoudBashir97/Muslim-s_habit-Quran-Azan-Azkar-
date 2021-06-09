@@ -3,7 +3,12 @@ package com.mahmoudbashir.azan_app.fragments
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +20,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import com.google.gson.Gson
 import com.mahmoudbashir.azan_app.R
 import com.mahmoudbashir.azan_app.databinding.FragmentAddInfoBinding
 import com.mahmoudbashir.azan_app.extentions.NetworkAbility
 import com.mahmoudbashir.azan_app.local.model.residents.Residents_Model
 import com.mahmoudbashir.azan_app.local.model.residents.data
+import com.mahmoudbashir.azan_app.locationTracker.GpsTracker
+import com.mahmoudbashir.azan_app.locationTracker.GpsTracker_Location
 import com.mahmoudbashir.azan_app.pojo.results
 import com.mahmoudbashir.azan_app.ui.MainActivity
 import com.mahmoudbashir.azan_app.viewmodel.AzanViewModel
@@ -57,6 +68,17 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
     lateinit var selected_city:String
     private var school_Id:Int=-1
     private lateinit var viewModel: AzanViewModel
+
+    var locationManager: LocationManager? = null
+    var GpsStatus = false
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationCallback: LocationCallback
+    var lat=0.0
+    var lng  =0.0
+
+    lateinit var tracker:GpsTracker_Location
+
+
     @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,21 +107,117 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
         viewModel = (activity as MainActivity).viewModel
 
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+                for (location in locationResult.locations){
+                    lat = location.latitude
+                    lng = location.longitude
+                }
+            }
+        }
+
         handleNetworkChanges()
         saveRequiredData()
+        getLocation()
+        //checkGpsStatus()
 
             return addBinding.root
     }
 
+    fun getLocation() {
+        tracker = GpsTracker_Location(requireContext())
+        if (tracker.canGetLocation()) {
+            val latitude: Double = tracker.getLatitude()
+            val longitude: Double = tracker.getLongitude()
+            lat = tracker.getLatitude()
+            lng = tracker.getLongitude()
+        } else {
+            tracker.showSettingsAlert()
+        }
+    }
+
+
+/*    private fun gpsTurnedOn(){
+            val d = AlertDialog.Builder(context)
+                .setTitle("Enable GPS!")
+                .setMessage("Please Enable GPS for setting data up")
+                .setPositiveButton("Enable"){ dialog, _->
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    context?.startActivity(intent);
+                    dialog.dismiss()
+
+                }.setNegativeButton("Cancel"){ dialog, _->
+                    dialog.dismiss()
+                }
+            d.show()
+    }
+
+    private fun checkGpsStatus() {
+        GpsStatus = false
+        locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        assert(locationManager != null)
+        GpsStatus = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        if (GpsStatus) {
+
+
+            *//*  if (ActivityCompat.checkSelfPermission(
+                      requireContext(),
+                      Manifest.permission.ACCESS_FINE_LOCATION
+                  ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                      requireContext(),
+                      Manifest.permission.ACCESS_COARSE_LOCATION
+                  ) != PackageManager.PERMISSION_GRANTED
+              ) {
+                  return
+              }
+
+              fusedLocationClient.lastLocation
+                  .addOnSuccessListener { location:Location? ->
+                      val lat = location?.latitude
+                      val lng = location?.longitude
+                      Toast.makeText(context,"mmmGPS Is Enabled : $lat , __ $lng" ,Toast.LENGTH_LONG).show()
+                  }*//*
+
+        } else {
+            gpsTurnedOn()
+            Toast.makeText(context, "GPS Is Disabled", Toast.LENGTH_LONG).show()
+        }
+    }*/
+
+    override fun onResume() {
+        super.onResume()
+        if (GpsStatus) {
+            Toast.makeText(context, "GPS Is Enabled", Toast.LENGTH_LONG).show()
+        }
+      //  if (requestingLocationUpdates) startLocationUpdates()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdates()
+    }
+
+
+    private fun stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+  /*  private fun startLocationUpdates() {
+        fusedLocationClient.requestLocationUpdates(locationRequest,
+            locationCallback,
+            Looper.getMainLooper())
+    }*/
 
     private fun saveRequiredData(){
         addBinding.btnSave.setOnClickListener{
             if (school_Id>-1 ){
 
                     addBinding.isSaved = true
-                    getAndStore(selected_city)
+                    getAndStore(selected_city, school_Id)
             }else{
-                Toast.makeText(context,"من فضلك اختر مدينتك وطريقة الحساب.",Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "من فضلك اختر مدينتك وطريقة الحساب.", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -107,45 +225,45 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
         if (position>0){
             selected_det_way = str[position]
             when(position){
-                1 ->{
+                1 -> {
                     school_Id = 0
                 }
-                2 ->{
+                2 -> {
                     school_Id = 1
                 }
-                3 ->{
+                3 -> {
                     school_Id = 2
                 }
-                4 ->{
+                4 -> {
                     school_Id = 3
                 }
-                5 ->{
+                5 -> {
                     school_Id = 4
                 }
-                6 ->{
+                6 -> {
                     school_Id = 5
                 }
-                7 ->{
+                7 -> {
                     school_Id = 7
                 }
-                8 ->{
+                8 -> {
                     school_Id = 8
                 }
-                9 ->{
+                9 -> {
                     school_Id = 9
                 }
-                10 ->{
+                10 -> {
                     school_Id = 10
                 }
-                11 ->{
+                11 -> {
                     school_Id = 11
                 }
-                12 ->{
+                12 -> {
                     school_Id = 12
                 }
 
             }
-            Log.d("school_id ","$school_Id")
+            Log.d("school_id ", "$school_Id")
             //SharedPreference.getInastance(this.requireContext()).save_InfoData("zagazig",school_Id)
         }
     }
@@ -155,7 +273,11 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
     }
 
     private fun countriesSpin(){
-        adapter= ArrayAdapter(this.requireContext(), android.R.layout.simple_list_item_1, countries_list)
+        adapter= ArrayAdapter(
+            this.requireContext(),
+            android.R.layout.simple_list_item_1,
+            countries_list
+        )
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown)
         addBinding.spinSelectCountry.adapter = adapter
         addBinding.spinSelectCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -181,7 +303,11 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
     private fun citiesSpin(position: Int){
 
         cities_list = listResidents[position].cities as ArrayList<String>
-        adapter= ArrayAdapter(this.requireContext(), android.R.layout.simple_list_item_1, cities_list)
+        adapter= ArrayAdapter(
+            this.requireContext(),
+            android.R.layout.simple_list_item_1,
+            cities_list
+        )
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown)
         addBinding.spinSelectCity.adapter = adapter
         addBinding.spinSelectCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -230,62 +356,73 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
         }
     }
 
-    private fun getAndStore(city: String) {
-        Log.d("insert_status","$city")
+    private fun getAndStore(city: String, schoolId: Int) {
+        Log.d("insert_status", "$city")
         GlobalScope.launch(Dispatchers.Main) {
-            if (viewModel.getAzanTimes(city, 1).isSuccessful) {
-                viewModel.getAzanTimes(city, 1).body()?.let {
-                    Log.d("timesAzan: ", "result: ${it.results.location.city}")
-                    val result: results = it.results
-                    //viewModel.insert(result)
-                    val check = viewModel.insert(result).isActive.and(isAdded)
+            if (lat>0.0){
+                if (viewModel.getAzanTimes("$lat","$lng",333, 1, schoolId).isSuccessful) {
+
+                    viewModel.getAzanTimes("$lat","$lng",333, 1, schoolId).body()?.let {
+
+                        Log.d("timesAzan: ", "result: ${it.results.location.city}")
+                        val result: results = it.results
+                        //viewModel.insert(result)
+                        val check = viewModel.insert(result).isActive.and(isAdded)
 
                         if (check)
                         {
                             addBinding.isSaved = false
 
                             findNavController().navigate(Add_Info_FragmentDirections.actionAddInfoFragmentToHomeFragment())
-                            SharedPreference.getInastance(context).save_InfoData(selected_city,school_Id)
+                            SharedPreference.getInastance(context).save_InfoData(
+                                selected_city,
+                                school_Id,
+                                "$lat",
+                                "$lng"
+                            )
                         }
+                    }
+                            Log.d("timesAzan: ", "Worked success")
                 }
-                Log.d("timesAzan: ", "Worked success")
             }
         }
     }
 
     private fun handleNetworkChanges() {
-        NetworkAbility.getNetworkLiveData(this.requireContext()).observe(viewLifecycleOwner, Observer { isConnected ->
-            if (!isConnected) {
-                addBinding.isConnected =false
+        NetworkAbility.getNetworkLiveData(this.requireContext()).observe(
+            viewLifecycleOwner,
+            Observer { isConnected ->
+                if (!isConnected) {
+                    addBinding.isConnected = false
 
-                addBinding.txtNetworkStatus.text = getString(R.string.text_no_connectivity)
-                addBinding.relConnectionErr.setBackgroundColor(resources.getColor(R.color.colorStatusNotConnected))
-            }else{
-                Log.d("statusNetwork", "connected!!")
-                CoroutineScope(Dispatchers.Main).launch {
-                   // getAndStore(selected_city)
+                    addBinding.txtNetworkStatus.text = getString(R.string.text_no_connectivity)
+                    addBinding.relConnectionErr.setBackgroundColor(resources.getColor(R.color.colorStatusNotConnected))
+                } else {
+                    Log.d("statusNetwork", "connected!!")
+                    CoroutineScope(Dispatchers.Main).launch {
+                        // getAndStore(selected_city)
 
-                    addBinding.txtNetworkStatus.text = getString(R.string.text_connectivity)
-                    addBinding.relConnectionErr.apply {
-                        setBackgroundColor(resources.getColor(R.color.colorStatusConnected))
+                        addBinding.txtNetworkStatus.text = getString(R.string.text_connectivity)
+                        addBinding.relConnectionErr.apply {
+                            setBackgroundColor(resources.getColor(R.color.colorStatusConnected))
 
-                        animate()
-                            .alpha(1f)
-                            .setStartDelay(ANIMATION_DURATION)
-                            .setDuration(ANIMATION_DURATION)
-                            .setListener(object : AnimatorListenerAdapter() {
-                                override fun onAnimationEnd(animation: Animator) {
-                                    /*
+                            animate()
+                                .alpha(1f)
+                                .setStartDelay(ANIMATION_DURATION)
+                                .setDuration(ANIMATION_DURATION)
+                                .setListener(object : AnimatorListenerAdapter() {
+                                    override fun onAnimationEnd(animation: Animator) {
+                                        /*
                                     * Execute Any Function After Connection Work
                                     * */
-                                }
-                            })
+                                    }
+                                })
+                        }
+                        delay(2000)
+                        addBinding.isConnected = true
                     }
-                    delay(2000)
-                    addBinding.isConnected = true
                 }
-            }
-        })
+            })
     }
 
     companion object {

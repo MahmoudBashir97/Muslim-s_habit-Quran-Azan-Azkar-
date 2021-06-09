@@ -85,6 +85,7 @@ class Home_Fragment : Fragment() {
                         val eshaa = element.times.Isha
                         setUpViews(fajr, zohr, asr, maghrib, eshaa)
                         Log.d("today_date : ", "date :${element.date.gregorian}")
+                        Log.d("today_date : ", "fajr :${element.times}")
 
                         // start alarm service for alarming user with pray realtime
                             startService(fajr, zohr, asr, maghrib, eshaa)
@@ -95,7 +96,7 @@ class Home_Fragment : Fragment() {
         })
     }
     private suspend fun getAndStore(city: String) {
-        GlobalScope.launch(Dispatchers.IO) {
+        /*GlobalScope.launch(Dispatchers.IO) {
             if (viewModel.getAzanTimes(city, 1).isSuccessful) {
                 viewModel.getAzanTimes(city, 1).body()?.let {
                     Log.d("timesAzan: ", "result: ${it.results.location.city}")
@@ -104,7 +105,7 @@ class Home_Fragment : Fragment() {
                 }
                 Log.d("timesAzan: ", "Worked success")
             }
-        }
+        }*/
     }
 
     private fun setUpViews(
