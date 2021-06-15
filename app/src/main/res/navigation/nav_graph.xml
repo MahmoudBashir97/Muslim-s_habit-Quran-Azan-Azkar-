@@ -3,37 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/screenSplash_Fragment">
+    app:startDestination="@id/add_Info_Fragment">
 
-    <fragment
-        android:id="@+id/screenSplash_Fragment"
-        android:name="com.mahmoudbashir.azan_app.fragments.ScreenSplash_Fragment"
-        android:label="fragment_screen_splash_"
-        tools:layout="@layout/fragment_screen_splash_" >
-        <action
-            android:id="@+id/action_screenSplash_Fragment_to_home_Fragment"
-            app:destination="@id/home_Fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/screenSplash_Fragment"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_screenSplash_Fragment_to_add_Info_Fragment"
-            app:destination="@id/add_Info_Fragment"
-            app:popUpTo="@id/screenSplash_Fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_screenSplash_Fragment_to_test_Fragment"
-            app:destination="@id/test_Fragment" />
-    </fragment>
     <fragment
         android:id="@+id/home_Fragment"
         android:name="com.mahmoudbashir.azan_app.fragments.Home_Fragment"

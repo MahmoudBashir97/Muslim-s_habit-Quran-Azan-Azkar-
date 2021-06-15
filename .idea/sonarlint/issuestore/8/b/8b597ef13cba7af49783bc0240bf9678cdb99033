@@ -1,15 +1,15 @@
 
-tkotlin:S117q"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(öŞ¾ûÿÿÿÿ8ìë·ˆŒ/
-tkotlin:S117>"VRename this local variable to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(ä‰é•8”Ï¬±/
-okotlin:S117s"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(ÉÏÑì8”Ï¬±/
-ukotlin:S117£"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(×§ğæúÿÿÿÿ8ìë·ˆŒ/
-tkotlin:S117o"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(İù…İûÿÿÿÿ8ìë·ˆŒ/
-tkotlin:S117p"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(×§ğæúÿÿÿÿ8ìë·ˆŒ/
-Bkotlin:S1250"Remove this commented out code.(İéÉÓøÿÿÿÿ8ÚÌ†ÛŒ/
-ukotlin:S117¤"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(öŞ¾ûÿÿÿÿ8ìë·ˆŒ/
-pkotlin:S117¥"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(·‡öñ8ìë·ˆŒ/
-Vkotlin:S1144¡"1Remove this unused private "startService" method.(ƒ€ÇÁÿÿÿÿÿ8”Ï¬±/
+tkotlin:S117q"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(İù…İûÿÿÿÿ8ìë·ˆŒ/
+Vkotlin:S1144£"1Remove this unused private "startService" method.(ƒ€ÇÁÿÿÿÿÿ8”Ï¬±/
+ukotlin:S117¥"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(×§ğæúÿÿÿÿ8ìë·ˆŒ/
+pkotlin:S117§"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(·‡öñ8ìë·ˆŒ/
+okotlin:S117t"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(·‡öñ8ìë·ˆŒ/
+okotlin:S117u"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(ÉÏÑì8”Ï¬±/
 okotlin:S101 "QRename class "Azan_Fragment" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.(©™¼ñ8ìë·ˆŒ/
-ukotlin:S117¢"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(İù…İûÿÿÿÿ8ìë·ˆŒ/
-okotlin:S117r"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(·‡öñ8ìë·ˆŒ/
-pkotlin:S117¦"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(ÉÏÑì8”Ï¬±/
+tkotlin:S117s"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(öŞ¾ûÿÿÿÿ8ìë·ˆŒ/
+Bkotlin:S1250"Remove this commented out code.(İéÉÓøÿÿÿÿ8ÚÌ†ÛŒ/
+ukotlin:S117¤"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(İù…İûÿÿÿÿ8ìë·ˆŒ/
+tkotlin:S117>"VRename this local variable to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(ä‰é•8”Ï¬±/
+ukotlin:S117¦"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(öŞ¾ûÿÿÿÿ8ìë·ˆŒ/
+pkotlin:S117¨"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(ÉÏÑì8”Ï¬±/
+tkotlin:S117r"QRename this parameter to match the regular expression "^`?[_a-z][a-zA-Z0-9]*`?$".(×§ğæúÿÿÿÿ8ìë·ˆŒ/

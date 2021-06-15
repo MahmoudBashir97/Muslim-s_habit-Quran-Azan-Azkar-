@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -24,6 +25,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.mahmoudbashir.azan_app.R
 import com.mahmoudbashir.azan_app.databinding.FragmentAddInfoBinding
@@ -357,7 +359,8 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
     }
 
     private fun getAndStore(city: String, schoolId: Int) {
-        Log.d("insert_status", "$city")
+        getLocation()
+        Log.d("insert_status", "$lat , mm $lng")
         GlobalScope.launch(Dispatchers.Main) {
             if (lat>0.0){
                 if (viewModel.getAzanTimes("$lat","$lng",333, 1, schoolId).isSuccessful) {
@@ -384,6 +387,8 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
                     }
                             Log.d("timesAzan: ", "Worked success")
                 }
+            }else{
+                Toast.makeText(context,"من فضلك قم بتفعيل ال GPS الخاص بك !",Toast.LENGTH_LONG).show()
             }
         }
     }

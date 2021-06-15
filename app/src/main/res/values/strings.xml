@@ -21,4 +21,8 @@
     <string name="select_city">اختيار المدينة</string>
     <string name="save_btn">حفظ</string>
     <string name="basmala">﻿بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</string>
+
+    <!-- Azkar -->
+    <string name="mourning_azkar">أذكار الصباح</string>
+    <string name="night_azkar">أذكار المساء</string>
 </resources>

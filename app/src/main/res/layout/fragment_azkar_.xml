@@ -7,11 +7,47 @@
     android:background="@color/rel_back"
     tools:context=".fragments.Azkar_Fragment">
 
+    <LinearLayout
+        android:id="@+id/lin_azkar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:visibility="visible"
+        >
+        <Button
+            android:id="@+id/mourning_azkar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/mourning_azkar"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/back_mourning_azar_btn"
+            android:layout_marginBottom="25dp"
+            />
+
+        <Button
+            android:id="@+id/night_azkar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/night_azkar"
+            android:textColor="@color/rel_back"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/back_night_azkar_btn"
+            />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_azkar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/single_item_azar"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:visibility="gone"/>
 
 </RelativeLayout>

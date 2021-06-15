@@ -26,7 +26,8 @@
         tools:targetApi="n">
         <service android:name=".service.IntentServ"/>
         <receiver android:name=".service.AzanNotifBroadCast"/>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".fragments.ScreenSplash_Fragment">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

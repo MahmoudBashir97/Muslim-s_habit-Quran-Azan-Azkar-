@@ -3,12 +3,8 @@ r
 Bapp/src/main/java/com/mahmoudbashir/azan_app/service/IntentServ.kt,e\e\eef7bac4cf66f85d5ac1f159ef95358ceac7203e
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 H
 app/google-services.json,f\d\fd8d34b142d02ec743a8efefefd2c097961666e9
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 y
 Iapp/src/main/java/com/mahmoudbashir/azan_app/retrofit/RetrofitInstance.kt,9\c\9c742b0c634ec658fb4f75f133f78237542de40b
 m
@@ -59,16 +55,10 @@ p
 @app/src/main/java/com/mahmoudbashir/azan_app/local/model/data.kt,a\a\aa22c20650e5a947afb5501409a364d5c27e97be
 v
 Fapp/src/main/java/com/mahmoudbashir/azan_app/adapters/Azkar_adapter.kt,6\d\6d10c29e3ab4f268d783d606ccbc1c6880fd393b
-o
-?app/src/main/java/com/mahmoudbashir/azan_app/ui/MainActivity.kt,f\0\f0d2c06fe3e087dd630cd190535da54f4da4a7b5
 w
 Gapp/src/main/java/com/mahmoudbashir/azan_app/fragments/Azan_Fragment.kt,8\b\8b597ef13cba7af49783bc0240bf9678cdb99033
-x
-Happ/src/main/java/com/mahmoudbashir/azan_app/fragments/Azkar_Fragment.kt,b\6\b6e3015a129d0f4dee984b6846be9a6780a7ae45
 o
 ?app/src/main/java/com/mahmoudbashir/prefs/SharedPreference.java,8\f\8f6693d0b73f426f5a5770d87b1e6c1a5f9db7de
-
-Oapp/src/main/java/com/mahmoudbashir/azan_app/fragments/ScreenSplash_Fragment.kt,1\1\11ad4bfeda06fcf367b7b9ce3e96f770a76190e6
 w
 Gapp/src/main/java/com/mahmoudbashir/azan_app/fragments/Home_Fragment.kt,f\1\f140bdf39e234c90d56784c7419f5b5c75d52280
 {
@@ -96,12 +86,8 @@ A
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 ~
 Napp/src/androidTest/java/com/mahmoudbashir/azan_app/ExampleInstrumentedTest.kt,0\4\0444373e561762d7bbb297c29b0a9b6f526806d3
-N
-app/src/main/assets/azkar.json,6\1\61b7d97d1e86b5d82b11567e2792d9342819809a
 W
 'app/src/main/assets/residents_data.json,e\4\e4bb6d3880c87a65216f212de1ae17db9348f2fc
-{
-Kapp/src/main/java/com/mahmoudbashir/azan_app/fragments/Add_Info_Fragment.kt,f\2\f2ccff15b125de3020d7ee2c05dd183400684479
 Y
 )app/src/main/res/anim/slide_in_bottom.xml,9\d\9de6822b66af858aa7c13e6acf47a70f43fb017c
 W
@@ -146,8 +132,6 @@ h
 8app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml,6\e\6ec7d34b130497a10dc92abcde9b313d370a89df
 b
 2app/src/main/res/values/ic_launcher_background.xml,1\8\18ccc38e5dffe10da3d8b454d3093a0a4ba78749
-S
-#app/src/main/res/values/strings.xml,d\2\d2281fbb3027de2722081a53408dd77628bf080e
 `
 0app/src/main/res/xml/network_security_config.xml,9\d\9d239a9c6e0f3ce6bc750ee58e30863a8efd3403
 o
@@ -162,3 +146,9 @@ m
 =app/src/main/java/com/mahmoudbashir/azan_app/Test_Fragment.kt,4\7\4701071e69ef7f7847e9220b5a77d12fa1d36a35
 ~
 Napp/src/main/java/com/mahmoudbashir/azan_app/retrofit/QuranRetrofitInstance.kt,b\a\ba88bf3b683c7d79c24b4b365b4c6840e88823db
+z
+Japp/src/main/java/com/mahmoudbashir/azan_app/locationTracker/GpsTracker.kt,4\5\458f5e4f10ccdcd3443ad8118adcacbe184246bb
+…
+Uapp/src/main/java/com/mahmoudbashir/azan_app/locationTracker/GpsTracker_Location.java,a\0\a0fee6290bf1993c91bfa744cb3e0fc46e6564bb
+Z
+*app/src/main/res/layout/fragment_azan_.xml,8\7\87659171478fcc1af1a91ff8651e7f89cd955716
