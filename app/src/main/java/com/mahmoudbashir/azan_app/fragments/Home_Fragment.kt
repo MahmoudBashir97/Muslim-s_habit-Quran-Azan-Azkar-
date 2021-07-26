@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
@@ -40,6 +41,7 @@ class Home_Fragment : Fragment() {
     lateinit var homeBinding: FragmentHomeBinding
     private lateinit var viewModel: AzanViewModel
     private var currentPray: MutableLiveData<String> = MutableLiveData()
+    var count:Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,7 +59,8 @@ class Home_Fragment : Fragment() {
             findNavController().navigate(Home_FragmentDirections.actionHomeFragmentToAzkarFragment())
         }
         homeBinding.cardQuran.setOnClickListener {
-            Snackbar.make(it, "سيتم إضافة القرآن الكريم قريبا, جزاكم الله خيرا.", 2500).show()
+            findNavController().navigate(Home_FragmentDirections.actionHomeFragmentToQuranSurahListFragment())
+           // Snackbar.make(it, "سيتم إضافة القرآن الكريم قريبا, جزاكم الله خيرا.", 2500).show()
         }
         viewModel = (activity as MainActivity).viewModel
 
@@ -65,9 +68,28 @@ class Home_Fragment : Fragment() {
         handleNetworkChanges()
         getStoredDataToView()
 
+        seb7aaCount()
+
+
         return homeBinding.root
     }
 
+    private fun seb7aaCount() {
+        count = SharedPreference.getInastance(context).lastCount
+        homeBinding.txtSbahaaCounter.text = count.toString()
+        homeBinding.cardSebhaa.setOnClickListener {
+            count ++
+            homeBinding.txtSbahaaCounter.text = count.toString()
+            SharedPreference.getInastance(context).saveLastCount(count)
+        }
+
+        homeBinding.relZeroCount.setOnClickListener{
+            count = 0
+            homeBinding.txtSbahaaCounter.text = count.toString()
+            SharedPreference.getInastance(context).saveLastCount(0)
+
+        }
+    }
 
 
     private fun getStoredDataToView() {

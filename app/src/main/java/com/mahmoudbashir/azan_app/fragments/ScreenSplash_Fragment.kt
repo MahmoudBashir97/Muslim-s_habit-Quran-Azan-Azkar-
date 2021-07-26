@@ -34,7 +34,10 @@ class ScreenSplash_Fragment : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Main) {
             delay(3000)
             val intent = Intent(this@ScreenSplash_Fragment,MainActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+                finish()
             //findNavController(splashBinding.root.rootView.id).navigate(ScreenSplash_FragmentDirections.actionScreenSplashFragmentToAddInfoFragment())
             SharedPreference.getInastance(this@ScreenSplash_Fragment).savePath("splash")
         }

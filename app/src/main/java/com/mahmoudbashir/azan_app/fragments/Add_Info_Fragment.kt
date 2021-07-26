@@ -67,7 +67,7 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
     lateinit var cities_list:ArrayList<String>
     lateinit var selected_det_way:String
     lateinit var selected_country:String
-    lateinit var selected_city:String
+    var selected_city:String="ccc"
     private var school_Id:Int=-1
     private lateinit var viewModel: AzanViewModel
 
@@ -214,7 +214,7 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
 
     private fun saveRequiredData(){
         addBinding.btnSave.setOnClickListener{
-            if (school_Id>-1 ){
+            if (school_Id> -1 ){
 
                     addBinding.isSaved = true
                     getAndStore(selected_city, school_Id)
@@ -289,10 +289,10 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
                 position: Int,
                 id: Long
             ) {
-                if (position>0){
+               /* if (position>0){
                     citiesSpin(position)
                    // Toast.makeText(context,countries_list[position],Toast.LENGTH_LONG).show()
-                }
+                }*/
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -302,7 +302,7 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
     }
 
 
-    private fun citiesSpin(position: Int){
+   /* private fun citiesSpin(position: Int){
 
         cities_list = listResidents[position].cities as ArrayList<String>
         adapter= ArrayAdapter(
@@ -326,11 +326,12 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
                 TODO("Not yet implemented")
             }
         }
-    }
+    }*/
     private fun getResidentsDataFromJson(){
+        cities_list = ArrayList()
         listResidents = ArrayList()
         countries_list = ArrayList()
-        cities_list = ArrayList()
+       // cities_list = ArrayList()
         val i: InputStream? = this.activity?.assets?.open("residents_data.json")
         if (i != null) {
             inputStreamToString(i)

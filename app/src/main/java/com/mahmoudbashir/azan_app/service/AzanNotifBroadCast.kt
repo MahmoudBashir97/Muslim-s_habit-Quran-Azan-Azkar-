@@ -20,13 +20,14 @@ class AzanNotifBroadCast : BroadcastReceiver() {
         val st_maghrib= intent?.getStringExtra("maghrib_time")
         val st_eshaa= intent?.getStringExtra("eshaa_time")
 
-
         val alarm_status =  SharedPreference.getInastance(context).alarmStatus
         if (alarm_status){
             Log.d("repeating:", "repeating every one minute ")
         updateTimeOnEachSecond(context!!, st_fajr, st_zohr, st_asr, st_maghrib, st_eshaa)
         }
     }
+
+
 
     private fun updateTimeOnEachSecond(
         context: Context,

@@ -50,6 +50,20 @@ public class SharedPreference {
 
         editor.apply();
     }
+
+    public void saveLastCount(int count){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        editor.putInt("last_count", count);
+
+        editor.apply();
+    }
+    public int getLastCount(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("last_count", 0);
+    }
     public String getPath(){
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getString("path", "");

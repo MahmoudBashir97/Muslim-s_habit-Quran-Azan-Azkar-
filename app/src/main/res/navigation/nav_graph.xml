@@ -24,6 +24,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_home_Fragment_to_quranSurahList_Fragment"
+            app:destination="@id/quranSurahList_Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/azan_Fragment"
@@ -65,4 +72,9 @@
         android:name="com.mahmoudbashir.azan_app.Test_Fragment"
         android:label="fragment_test_"
         tools:layout="@layout/fragment_test_" />
+    <fragment
+        android:id="@+id/quranSurahList_Fragment"
+        android:name="com.mahmoudbashir.azan_app.QuranSurahList_Fragment"
+        android:label="fragment_quran_surah_list_"
+        tools:layout="@layout/fragment_quran_surah_list_" />
 </navigation>
