@@ -93,7 +93,7 @@ class Azan_Fragment : Fragment() {
             }
         })
     }
-    private suspend fun getAndStore(city: String) {
+    private suspend fun getAndStore() {
         val schoolId = SharedPreference.getInastance(context).timesSchoolId
         val lat = SharedPreference.getInastance(context).lat
         val lng = SharedPreference.getInastance(context).lng
@@ -102,7 +102,10 @@ class Azan_Fragment : Fragment() {
                 viewModel.getAzanTimes(lat,lng,333, 1,schoolId).body()?.let {
                     Log.d("timesAzan: ", "result: ${it.results.location.city}")
                     val result: results = it.results
-                    viewModel.insert(result)
+                    val check = viewModel.insert(result).isActive.and(isAdded)
+                    if (check){
+                        Log.d("azanFragment: ","added to room db")
+                    }
                 }
                 Log.d("timesAzan: ", "Worked success")
             }
@@ -203,7 +206,7 @@ class Azan_Fragment : Fragment() {
             }else{
                 Log.d("statusNetwork", "connected!!")
                 CoroutineScope(Dispatchers.Main).launch {
-                    getAndStore("zagazig")
+                    getAndStore()
 
                     azanBinding.txtNetworkStatus.text = getString(R.string.text_connectivity)
                     azanBinding.relConnectionErr.apply {

@@ -4,11 +4,14 @@
     package="com.mahmoudbashir.azan_app">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
 
 
     <application
@@ -25,7 +28,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="n">
         <service android:name=".service.IntentServ"/>
-        <receiver android:name=".service.AzanNotifBroadCast"/>
+        <receiver android:enabled="true" android:name=".service.AzanNotifBroadCast">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="true" android:name=".service.PlayAndStopAzanMedia"/>
+        <service android:name=".service.MediaPlayerService"/>
         <activity android:name=".ui.MainActivity"/>
         <activity android:name=".fragments.ScreenSplash_Fragment">
             <intent-filter>

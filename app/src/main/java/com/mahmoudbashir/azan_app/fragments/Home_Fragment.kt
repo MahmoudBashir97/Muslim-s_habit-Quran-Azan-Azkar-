@@ -28,6 +28,7 @@ import com.mahmoudbashir.azan_app.databinding.FragmentHomeBinding
 import com.mahmoudbashir.azan_app.extentions.NetworkAbility
 import com.mahmoudbashir.azan_app.pojo.results
 import com.mahmoudbashir.azan_app.service.AzanNotifBroadCast
+import com.mahmoudbashir.azan_app.service.MediaPlayerService
 import com.mahmoudbashir.azan_app.ui.MainActivity
 import com.mahmoudbashir.azan_app.viewmodel.AzanViewModel
 import com.mahmoudbashir.prefs.SharedPreference
@@ -138,42 +139,45 @@ class Home_Fragment : Fragment() {
         st_eshaa: String
     ) {
 
+        try{
+            val formatter = SimpleDateFormat("hh:mm aa");
+            val cTime = formatter.format(Date())
+            val ft = formatter.parse(cTime) as Date
+            val fajrdate = formatter.parse(st_fajr) as Date
+            val zohrdate = formatter.parse(st_zohr) as Date
+            val asrsdate = formatter.parse(st_asr) as Date
+            val maghribdate = formatter.parse(st_maghrib) as Date
+            val eshaadate = formatter.parse(st_eshaa) as Date
 
-        val formatter = SimpleDateFormat("hh:mm aa");
-        val cTime = formatter.format(Date())
-        val ft = formatter.parse(cTime) as Date
-        val fajrdate = formatter.parse(st_fajr) as Date
-        val zohrdate = formatter.parse(st_zohr) as Date
-        val asrsdate = formatter.parse(st_asr) as Date
-        val maghribdate = formatter.parse(st_maghrib) as Date
-        val eshaadate = formatter.parse(st_eshaa) as Date
-
-        when {
-            fajrdate.after(ft) -> {
-                homeBinding.txtNextPrayTime.text = st_fajr
-                homeBinding.txtNextPrayName.text = "الفجر"
-                Log.d("comparing", "fajr time")
+            when {
+                fajrdate.after(ft) -> {
+                    homeBinding.txtNextPrayTime.text = st_fajr
+                    homeBinding.txtNextPrayName.text = "الفجر"
+                    Log.d("comparing", "fajr time")
+                }
+                zohrdate.after(ft) -> {
+                    homeBinding.txtNextPrayTime.text = st_zohr
+                    homeBinding.txtNextPrayName.text = "الظهر"
+                    Log.d("comparing", "zohr time")
+                }
+                asrsdate.after(ft) -> {
+                    homeBinding.txtNextPrayTime.text = st_asr
+                    homeBinding.txtNextPrayName.text = "العصر"
+                    Log.d("comparing", "asr time")
+                }
+                maghribdate.after(ft) -> {
+                    homeBinding.txtNextPrayTime.text = st_maghrib
+                    homeBinding.txtNextPrayName.text = "المغرب"
+                    Log.d("comparing", "maghrib time")
+                }
+                eshaadate.after(ft) -> {
+                    homeBinding.txtNextPrayTime.text = st_eshaa
+                    homeBinding.txtNextPrayName.text = "العشاء"
+                    Log.d("comparing", "eshaa time")
+                }
             }
-            zohrdate.after(ft) -> {
-                homeBinding.txtNextPrayTime.text = st_zohr
-                homeBinding.txtNextPrayName.text = "الظهر"
-                Log.d("comparing", "zohr time")
-            }
-            asrsdate.after(ft) -> {
-                homeBinding.txtNextPrayTime.text = st_asr
-                homeBinding.txtNextPrayName.text = "العصر"
-                Log.d("comparing", "asr time")
-            }
-            maghribdate.after(ft) -> {
-                homeBinding.txtNextPrayTime.text = st_maghrib
-                homeBinding.txtNextPrayName.text = "المغرب"
-                Log.d("comparing", "maghrib time")
-            }
-            eshaadate.after(ft) -> {
-                homeBinding.txtNextPrayTime.text = st_eshaa
-                homeBinding.txtNextPrayName.text = "العشاء"
-                Log.d("comparing", "eshaa time")
-            }
+        }catch (e:Exception){
+            e.message
         }
     }
 
@@ -192,6 +196,8 @@ class Home_Fragment : Fragment() {
         i.putExtra("maghrib_time", "$st_maghrib")
         i.putExtra("eshaa_time", "$st_eshaa")
         val pendingIntent = PendingIntent.getBroadcast(this.requireContext(), 0, i, 0)
+       // val pendingIntent = PendingIntent.getService(this.requireContext(), 0, i, 0)
+
 
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 

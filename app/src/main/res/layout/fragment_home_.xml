@@ -15,6 +15,15 @@
         android:layout_height="match_parent"
         tools:context=".fragments.Home_Fragment"
         android:background="@color/white">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
         <RelativeLayout
             android:id="@+id/rel_fake"
             android:layout_width="match_parent"
@@ -25,26 +34,7 @@
             android:layout_height="150dp"
             android:src="@drawable/ramadan_frame1"
             android:scaleType="fitXY"/>
-        <RelativeLayout
-            android:id="@+id/rel_connection_err"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#F61919"
-            android:layout_alignParentBottom="true"
-            android:visibility="@{isConnected? View.GONE : View.VISIBLE,default = gone}">
 
-            <TextView
-                android:id="@+id/txt_network_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No Internet Connection , Please check it!!"
-                android:textSize="18sp"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
-
-        </RelativeLayout>
         <androidx.cardview.widget.CardView
             android:id="@+id/card_current_pray"
             android:layout_width="match_parent"
@@ -314,6 +304,33 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/rel_connection_err"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#F61919"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:layout_below="@+id/card_quran"
+            android:visibility="@{isConnected? View.GONE : View.VISIBLE,default = gone}"
+            >
+
+            <TextView
+                android:id="@+id/txt_network_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Internet Connection , Please check it!!"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
 
     </RelativeLayout>
 </layout>

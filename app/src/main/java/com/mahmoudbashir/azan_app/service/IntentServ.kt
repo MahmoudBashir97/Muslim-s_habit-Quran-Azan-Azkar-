@@ -1,9 +1,12 @@
 package com.mahmoudbashir.azan_app.service
 
+import android.app.AlarmManager
 import android.app.IntentService
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
+import android.os.SystemClock
 import android.util.Log
 import android.widget.Toast
 import com.mahmoudbashir.azan_app.R
@@ -30,7 +33,7 @@ class IntentServ : IntentService("MyIntentService") {
             isRunning = true
             while (isRunning){
 
-               val st_fajr= intent?.getStringExtra("fajr_time")
+                val st_fajr= intent?.getStringExtra("fajr_time")
                 val st_zohr= intent?.getStringExtra("zohr_time")
                 val st_asr= intent?.getStringExtra("asr_time")
                 val st_maghrib= intent?.getStringExtra("maghrib_time")
@@ -45,7 +48,8 @@ class IntentServ : IntentService("MyIntentService") {
         }
     }
 
-    private fun updateTimeOnEachSecond(context: Context,st_fajr: String?,
+    private fun updateTimeOnEachSecond(context: Context,
+                                       st_fajr: String?,
                                        st_zohr: String?,
                                        st_asr: String?,
                                        st_maghrib: String?,
@@ -96,5 +100,16 @@ class IntentServ : IntentService("MyIntentService") {
             },
             0, 1000,
         )*/
+    }
+
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        val restartServiceIntent = Intent(applicationContext, IntentServ::class.java).also {
+            it.setPackage(packageName)
+        }
+        val restartServicePendingIntent: PendingIntent = PendingIntent.getService(this, 1, restartServiceIntent, PendingIntent.FLAG_ONE_SHOT)
+        applicationContext.getSystemService(Context.ALARM_SERVICE)
+        val alarmService: AlarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmService.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, restartServicePendingIntent)
+
     }
 }

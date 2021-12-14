@@ -18,4 +18,5 @@ class AzanRepository(
     val getAllDataTimes:LiveData<results> = db.dao().getAllDataTimesStored()
 
     suspend fun getAllDataInsidebroadcast():results = db.dao().getAllDataForbroadCast()
+
 }

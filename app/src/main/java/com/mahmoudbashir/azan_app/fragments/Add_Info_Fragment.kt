@@ -44,6 +44,7 @@ import java.io.InputStream
 
 
 class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
+
     private val str = arrayOf(
         "اختر طريقة الحساب",
         "مذهب الشيعة الاثنا عشرية",
@@ -98,6 +99,13 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
             container,
             false
         )
+
+
+            return addBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         //loading local json data
         getResidentsDataFromJson()
         addBinding.spinSelectWay.setSelection(0)
@@ -125,20 +133,27 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
         saveRequiredData()
         getLocation()
         //checkGpsStatus()
+    }
 
-            return addBinding.root
+    override fun onStart() {
+        super.onStart()
+        tracker = GpsTracker_Location(requireContext())
     }
 
     fun getLocation() {
+
         tracker = GpsTracker_Location(requireContext())
-        if (tracker.canGetLocation()) {
-            val latitude: Double = tracker.getLatitude()
-            val longitude: Double = tracker.getLongitude()
-            lat = tracker.getLatitude()
-            lng = tracker.getLongitude()
-        } else {
+        if (SharedPreference.getInastance(context).lat != "" || tracker.canGetLocation()){
+                val latitude: Double = tracker.getLatitude()
+                val longitude: Double = tracker.getLongitude()
+                lat = tracker.getLatitude()
+                lng = tracker.getLongitude()
+
+        }else{
             tracker.showSettingsAlert()
+            return
         }
+
     }
 
 
@@ -371,6 +386,7 @@ class Add_Info_Fragment : Fragment() ,AdapterView.OnItemSelectedListener{
                         Log.d("timesAzan: ", "result: ${it.results.location.city}")
                         val result: results = it.results
                         //viewModel.insert(result)
+                        delay(200)
                         val check = viewModel.insert(result).isActive.and(isAdded)
 
                         if (check)

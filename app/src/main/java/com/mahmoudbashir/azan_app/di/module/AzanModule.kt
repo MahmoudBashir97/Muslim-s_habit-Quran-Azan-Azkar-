@@ -22,9 +22,6 @@ class AzanModule(app:Application) {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             Log.d("RoomDatabaseModule","onCreate")
-            CoroutineScope(Dispatchers.IO).launch {
-
-            }
         }
     }
 
